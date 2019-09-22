@@ -1,0 +1,8 @@
+﻿---
+applications:
+- name: SMSTickerAlert
+  memory: 1G
+  stack: windows
+  buildpacks:
+   - hwc_buildpack
+

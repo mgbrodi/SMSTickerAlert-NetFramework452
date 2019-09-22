@@ -1,0 +1,9 @@
+﻿---
+applications:
+- name: TickerUpdater
+  memory: 1G
+  stack: windows
+  buildpacks:
+   - binary_buildpack
+  health-check-type: process
+  no-route: true
