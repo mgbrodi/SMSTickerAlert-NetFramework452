@@ -50,7 +50,8 @@ namespace TickerUpdater
                     foreach (Ticker ticker in _db.Tickers)
                     {
                         ticker.LastRead = DateTime.UtcNow;
-                        ticker.Current = HTTPhandy.TickerFromAPI(fin,ticker.TickerName);
+                        var currRead = HTTPhandy.TickerFromAPI(fin, ticker.TickerName);
+                        ticker.Current = currRead >0 ? currRead: ticker.Current;
                         Console.WriteLine(ticker.TickerName + ": " + ticker.Current);
                     }
                     _db.SaveChanges();

@@ -71,13 +71,16 @@ namespace ModelsCommons.Util
                         StreamReader reader = new StreamReader(dataStream);
                         string responseFromServer = reader.ReadToEnd();
 
-                        //Match @"<meta name=""price"" content=""(\d+,?\d+\.\d+)"">",
-
-                        Match match = Regex.Match(responseFromServer, finProvider.Match, RegexOptions.IgnoreCase);
+                        //Match @"<meta name=""price"" content=""(\d+,?\d+\.\d+)"">"
+                        //@"lastsale"">(\d+,?\d+\.\d+).*"
+                        
+                        Match match = Regex.Match(responseFromServer, @"lastsale"" .*>(\d+,?\d+\.\d+)", RegexOptions.IgnoreCase);
+                        
                         if (match.Success)
                         {
                             Decimal.TryParse(match.Groups[1].Value, out current);
                         }
+
                     }
                     response.Close();
                 }
